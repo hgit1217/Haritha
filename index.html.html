@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haritha Malladi — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #18181f;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --accent: #6c63ff;
+    --accent2: #a78bfa;
+    --text: #f0eeff;
+    --muted: #8b8999;
+    --muted2: #b0adc2;
+    --tag-bg: rgba(108,99,255,0.12);
+    --tag-border: rgba(108,99,255,0.3);
+    --tag-text: #a78bfa;
+    --green: #34d399;
+    --amber: #fbbf24;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 18px; letter-spacing: -0.3px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent2); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); font-size: 13px; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.3px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent2);
+    padding: 8px 20px; border-radius: 6px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: rgba(108,99,255,0.15); color: var(--text); }
+
+  section { padding: 100px 0; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+  .hero { padding: 160px 0 100px; position: relative; overflow: hidden; }
+
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 400px; gap: 80px; align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    color: var(--tag-text); padding: 6px 14px; border-radius: 100px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.4px;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green); display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .hero h1 {
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700; line-height: 1.1; letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--accent2); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--muted2); line-height: 1.7;
+    margin-bottom: 40px; max-width: 500px;
+  }
+
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 600; font-size: 14px; text-decoration: none;
+    border: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent; color: var(--muted2);
+    padding: 12px 28px; border-radius: 8px;
+    font-weight: 500; font-size: 14px; text-decoration: none;
+    border: 1px solid var(--border2); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--text); }
+
+  .hero-card {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+  }
+
+  .avatar-ring {
+    width: 80px; height: 80px;
+    border-radius: 50%; margin-bottom: 20px;
+    background: linear-gradient(135deg, #6c63ff, #a78bfa);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 26px; font-weight: 700; color: #fff;
+  }
+
+  .card-name {
+    font-size: 20px; font-weight: 700; margin-bottom: 4px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .card-role { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+
+  .card-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
+  }
+  .stat-item {
+    background: var(--bg3); border-radius: 10px; padding: 14px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 22px; font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--accent2);
+  }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .card-certs {
+    border-top: 1px solid var(--border);
+    padding-top: 16px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .cert-badge {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; color: var(--muted2);
+  }
+  .cert-icon {
+    width: 24px; height: 24px; border-radius: 6px;
+    background: rgba(0,120,212,0.18); border: 1px solid rgba(0,120,212,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #60b8f5;
+    flex-shrink: 0;
+  }
+
+  .section-eyebrow {
+    color: var(--accent2); font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 700; letter-spacing: -0.8px;
+    margin-bottom: 16px; line-height: 1.15;
+  }
+
+  .section-desc { color: var(--muted2); font-size: 15px; max-width: 540px; line-height: 1.7; }
+
+  .divider { height: 1px; background: var(--border); margin: 0; }
+
+  .skills-section { background: var(--bg); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; margin-top: 48px;
+  }
+
+  .skill-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+  .skill-card-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; margin-bottom: 16px;
+  }
+
+  .skill-card-title {
+    font-size: 15px; font-weight: 600; margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    background: var(--tag-bg); border: 1px solid var(--tag-border);
+    color: var(--tag-text); padding: 4px 10px; border-radius: 6px;
+    font-size: 11px; font-weight: 500;
+  }
+  .tag.gray {
+    background: rgba(255,255,255,0.04); border-color: var(--border2);
+    color: var(--muted2);
+  }
+
+  .exp-section { background: var(--bg2); }
+
+  .exp-list { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-meta { padding-top: 4px; }
+  .exp-date { font-size: 12px; color: var(--accent2); font-weight: 600; margin-bottom: 6px; letter-spacing: 0.3px; }
+  .exp-company {
+    font-size: 14px; color: var(--muted2);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .company-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--muted); flex-shrink: 0;
+  }
+
+  .exp-role {
+    font-size: 18px; font-weight: 600; margin-bottom: 12px;
+    font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.3px;
+  }
+
+  .exp-desc { color: var(--muted2); font-size: 14px; line-height: 1.75; margin-bottom: 20px; }
+
+  .exp-bullets {
+    list-style: none; display: flex; flex-direction: column; gap: 8px;
+    margin-bottom: 20px;
+  }
+  .exp-bullets li {
+    color: var(--muted2); font-size: 13.5px; padding-left: 16px;
+    position: relative; line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '›'; position: absolute; left: 0;
+    color: var(--accent2); font-size: 15px;
+  }
+
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .certs-section { background: var(--bg); }
+  .certs-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px; margin-top: 48px;
+  }
+  .cert-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 24px;
+    display: flex; align-items: flex-start; gap: 16px;
+    transition: border-color 0.2s;
+  }
+  .cert-card:hover { border-color: var(--border2); }
+  .cert-logo {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(0,120,212,0.12); border: 1px solid rgba(0,120,212,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 800; color: #60b8f5;
+    flex-shrink: 0; font-family: 'Space Grotesk', sans-serif;
+  }
+  .cert-name { font-size: 13px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+  .cert-org { font-size: 11px; color: var(--muted); }
+  .cert-status {
+    margin-top: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+    padding: 2px 8px; border-radius: 4px; display: inline-block;
+  }
+  .cert-status.active { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+  .cert-status.in-progress { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+
+  .contact-section { background: var(--bg2); }
+  .contact-inner {
+    max-width: 640px; margin: 0 auto; text-align: center; padding: 80px 0;
+  }
+  .contact-inner .section-title { font-size: 38px; margin-bottom: 16px; }
+  .contact-inner p { color: var(--muted2); margin-bottom: 40px; font-size: 16px; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg3); border: 1px solid var(--border2);
+    color: var(--text); padding: 12px 22px; border-radius: 10px;
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .contact-link:hover { border-color: var(--accent2); transform: translateY(-2px); }
+  .contact-link svg { width: 16px; height: 16px; opacity: 0.7; }
+
+  footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    color: var(--muted); font-size: 12px;
+  }
+
+  .hero-glow {
+    position: absolute; top: -200px; right: -100px;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(108,99,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .exp-item { grid-template-columns: 1fr; gap: 12px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">HM<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:kharithaiv@gmail.com" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">Open to new opportunities</div>
+        <h1>Haritha<br><span>Malladi</span></h1>
+        <p class="hero-sub">Senior Software Engineer specializing in Integration & API Engineering, Cloud-Native Architecture, and AI-powered enterprise solutions on Microsoft Azure.</p>
+        <div class="hero-actions">
+          <a href="mailto:kharithaiv@gmail.com" class="btn-primary">Let's connect</a>
+          <a href="https://www.linkedin.com/in/haritha-malladi" target="_blank" class="btn-ghost">View LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="avatar-ring">HM</div>
+        <div class="card-name">Haritha Malladi</div>
+        <div class="card-role">Senior Software Engineer · Capgemini · Toronto</div>
+
+        <div class="card-stats">
+          <div class="stat-item">
+            <div class="stat-num">9+</div>
+            <div class="stat-lbl">Years exp.</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5</div>
+            <div class="stat-lbl">MS Certifications</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">Azure</div>
+            <div class="stat-lbl">Primary cloud</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">C#/.NET</div>
+            <div class="stat-lbl">Core stack</div>
+          </div>
+        </div>
+
+        <div class="card-certs">
+          <div class="cert-badge">
+            <div class="cert-icon">Az</div>
+            Azure AI Engineer Associate <em style="margin-left:auto;font-style:normal;color:var(--amber);font-size:11px;">In Progress</em>
+          </div>
+          <div class="cert-badge">
+            <div class="cert-icon">Az</div>
+            Azure AI Fundamentals
+          </div>
+          <div class="cert-badge">
+            <div class="cert-icon">PP</div>
+            Power Platform Consultant
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <div class="section-eyebrow">Expertise</div>
+    <h2 class="section-title">Core skill areas</h2>
+    <p class="section-desc">Spanning integration architecture, API lifecycle management, cloud platforms, and full-stack .NET engineering with a growing AI practice.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🔗</div>
+        <div class="skill-card-title">Integration & Middleware</div>
+        <div class="skill-tags">
+          <span class="tag">Logic Apps</span>
+          <span class="tag">Azure Functions</span>
+          <span class="tag">Service Bus</span>
+          <span class="tag">API Management</span>
+          <span class="tag gray">Pub/Sub</span>
+          <span class="tag gray">Orchestration</span>
+          <span class="tag gray">JSON / XML</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">⚙️</div>
+        <div class="skill-card-title">API Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">REST & SOAP</span>
+          <span class="tag">OpenAPI / Swagger</span>
+          <span class="tag">Azure APIM</span>
+          <span class="tag gray">Apigee Edge/X</span>
+          <span class="tag gray">OAuth2</span>
+          <span class="tag gray">Versioning</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <div class="skill-card-title">Cloud Platforms</div>
+        <div class="skill-tags">
+          <span class="tag">Azure ADF</span>
+          <span class="tag">Key Vault</span>
+          <span class="tag">Cosmos DB</span>
+          <span class="tag">Container Apps</span>
+          <span class="tag gray">AWS patterns</span>
+          <span class="tag gray">GCP patterns</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">💻</div>
+        <div class="skill-card-title">Software Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">C# / .NET Core</span>
+          <span class="tag">ASP.NET</span>
+          <span class="tag">Entity Framework</span>
+          <span class="tag gray">React / Angular</span>
+          <span class="tag gray">PostgreSQL</span>
+          <span class="tag gray">PL/SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🚀</div>
+        <div class="skill-card-title">DevOps & CI/CD</div>
+        <div class="skill-tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Azure DevOps</span>
+          <span class="tag">Docker</span>
+          <span class="tag gray">Release automation</span>
+          <span class="tag gray">Observability</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-icon">🤖</div>
+        <div class="skill-card-title">AI & Automation</div>
+        <div class="skill-tags">
+          <span class="tag">AI Builder</span>
+          <span class="tag">Copilot Studio</span>
+          <span class="tag">Azure AI Foundry</span>
+          <span class="tag gray">Azure OpenAI</span>
+          <span class="tag gray">Power Platform</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="container">
+    <div class="section-eyebrow">Career</div>
+    <h2 class="section-title">Professional experience</h2>
+    <p class="section-desc">Over nine years delivering integration solutions, APIs, and cloud-native applications across enterprise environments in Canada and India.</p>
+
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">Aug 2021 – Present</div>
+          <div class="exp-company"><span class="company-dot"></span>Capgemini Inc., Canada</div>
+        </div>
+        <div>
+          <div class="exp-role">Senior Software Engineer / Senior Consultant</div>
+          <p class="exp-desc">Worked directly with client architects and business teams to understand integration challenges, analyze existing API landscapes, and propose modernization strategies tailored to their ecosystems.</p>
+          <ul class="exp-bullets">
+            <li>Designed integration architecture blueprints covering API structures, message flows, transformations, policies, telemetry, and resilience.</li>
+            <li>Built secure, scalable APIs and integration services using .NET, C#, and Azure services connecting internal systems, SaaS products, and legacy workloads.</li>
+            <li>Implemented cloud-native workflows through Azure Functions, Logic Apps, Service Bus (queues & topics), and Key Vault for event-driven and async integrations.</li>
+            <li>Led API migration initiatives onto Azure API Management — standardizing policies, versioning, and documentation.</li>
+            <li>Oversaw GitHub Actions deployment pipelines and mentored junior developers on API patterns and integration design.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">.NET / C#</span>
+            <span class="tag">Azure APIM</span>
+            <span class="tag">Logic Apps</span>
+            <span class="tag">Service Bus</span>
+            <span class="tag gray">GitHub Actions</span>
+            <span class="tag gray">OpenAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">2020 – 2021</div>
+          <div class="exp-company"><span class="company-dot"></span>Humber College, Toronto</div>
+        </div>
+        <div>
+          <div class="exp-role">.NET Developer</div>
+          <ul class="exp-bullets">
+            <li>Implemented API integrations that improved application stability, data consistency, and usability across connected systems.</li>
+            <li>Optimized backend processing, achieving measurable performance gains (~25%).</li>
+            <li>Strengthened API security and service reliability through improved request handling and validation.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">ASP.NET</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag gray">Agile</span>
+            <span class="tag gray">SQL Server</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-date">2011 – 2015</div>
+          <div class="exp-company"><span class="company-dot"></span>Cognizant, India</div>
+        </div>
+        <div>
+          <div class="exp-role">Programmer Analyst</div>
+          <ul class="exp-bullets">
+            <li>Delivered maintainable full-stack components supporting enterprise applications with strong emphasis on performance and data integrity.</li>
+            <li>Applied secure design principles to APIs and integration touchpoints — authentication, authorization, encryption.</li>
+            <li>Collaborated cross-functionally to meet aggressive delivery timelines, consistently exceeding project SLAs.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag gray">Enterprise apps</span>
+            <span class="tag gray">Security</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" id="certifications">
+  <div class="container">
+    <div class="section-eyebrow">Credentials</div>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-desc">Microsoft-certified across Azure, AI, and Power Platform — with additional credentials in progress.</p>
+
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-logo">Az</div>
+        <div>
+          <div class="cert-name">Azure AI Engineer Associate</div>
+          <div class="cert-org">Microsoft Certified</div>
+          <div class="cert-status in-progress">In Progress</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">Az</div>
+        <div>
+          <div class="cert-name">Azure AI Fundamentals</div>
+          <div class="cert-org">Microsoft Certified</div>
+          <div class="cert-status active">Active</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">Az</div>
+        <div>
+          <div class="cert-name">Azure Fundamentals</div>
+          <div class="cert-org">Microsoft Certified</div>
+          <div class="cert-status active">Active</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">PP</div>
+        <div>
+          <div class="cert-name">Power Platform Functional Consultant Associate</div>
+          <div class="cert-org">Microsoft Certified</div>
+          <div class="cert-status active">Active</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo">PP</div>
+        <div>
+          <div class="cert-name">Power Platform Fundamentals</div>
+          <div class="cert-org">Microsoft Certified</div>
+          <div class="cert-status active">Active</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo" style="background:rgba(108,99,255,0.12);border-color:rgba(108,99,255,0.3);color:var(--accent2);">IT</div>
+        <div>
+          <div class="cert-name">B.Sc. Information Technology</div>
+          <div class="cert-org">Bachelor's Degree, India</div>
+          <div class="cert-status active">Completed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-eyebrow">Let's talk</div>
+      <h2 class="section-title">Open to new challenges</h2>
+      <p>Whether it's a complex integration problem, an API modernization initiative, or an AI-powered enterprise solution — let's build something great together.</p>
+      <div class="contact-links">
+        <a href="mailto:kharithaiv@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          kharithaiv@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/haritha-malladi" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="tel:+19057492959" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.44 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +1 905 749 2959
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Haritha Malladi. All rights reserved.</span>
+  <span>Senior Software Engineer · Toronto, ON</span>
+</footer>
+
+</body>
+</html>
